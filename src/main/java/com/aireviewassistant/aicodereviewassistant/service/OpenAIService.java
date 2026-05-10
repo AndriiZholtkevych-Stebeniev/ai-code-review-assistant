@@ -24,7 +24,7 @@ public class OpenAIService {
         String prompt = buildReviewPrompt(language, code, customPrompt);
 
         Map<String, Object> requestBody = Map.of(
-                "model", "gpt-4.1-mini",
+                "model", "gpt-5.5",
                 "input", prompt
         );
 
