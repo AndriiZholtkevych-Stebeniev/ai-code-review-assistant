@@ -1,0 +1,97 @@
+HELP.md
+
+# Maven / build output
+target/
+build/
+out/
+*.class
+
+# Maven Wrapper
+# If you want everyone to run ./mvnw without Maven installed, consider NOT ignoring this jar.
+.mvn/wrapper/maven-wrapper.jar
+
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Logs
+logs/
+*.log
+*.log.*
+hs_err_pid*
+replay_pid*
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Spring Boot local configs / secrets
+application-local.properties
+application-local.yml
+application-dev-local.properties
+application-dev-local.yml
+application-secret.properties
+application-secret.yml
+application-secrets.properties
+application-secrets.yml
+
+# Java keystores / certificates / keys
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+*.crt
+
+# Postman
+# Keep collection files, ignore local environments because they can contain secrets
+postman/*environment.json
+!postman/*environment.example.json
+
+# Test reports / coverage
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+### STS ###
+.apt_generated
+.apt_generated_tests
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
