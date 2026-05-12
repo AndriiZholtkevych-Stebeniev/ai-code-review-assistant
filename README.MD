@@ -169,3 +169,10 @@ Run only service tests:
 ```bash
 ./mvnw -Dtest=ReviewServiceTest test
 ```
+
+## Live Deployment
+
+The application is deployed on Render and can be tested using the live API URL below:
+
+```text
+https://ai-code-review-assistant-dhz3.onrender.com
