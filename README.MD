@@ -176,3 +176,38 @@ The application is deployed on Render and can be tested using the live API URL b
 
 ```text
 https://ai-code-review-assistant-dhz3.onrender.com
+```
+## Demo Access Protection
+
+The live deployment protects mutating endpoints with a demo token to prevent abuse of the OpenAI API.
+
+Read-only endpoints are public and can be tested without a token:
+ ```
+GET /api/v1/reviews
+GET /api/v1/reviews/{id}
+GET /api/v1/reviews/language/{language}
+```
+Mutating endpoints require the following HTTP header:
+```
+X-Demo-Token: <demo-token>
+```
+Protected endpoints:
+```
+POST /api/v1/reviews
+DELETE /api/v1/reviews/{id}
+DELETE /api/v1/reviews
+```
+Example protected request:
+```
+POST https://ai-code-review-assistant-dhz3.onrender.com/api/v1/reviews
+Content-Type: application/json
+X-Demo-Token: <demo-token>
+```
+Example request body:
+```
+{
+"language": "Java",
+"code": "public class Main { public static void main(String[] args) { System.out.println(\"Hello World\"); } }",
+"prompt": "Review this code for readability, structure, bugs, edge cases, and possible improvements."
+}
+```

@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Code Review API",
-    "description": "Postman collection for testing the AI Code Review Assistant API locally and on Render.",
+    "description": "Postman collection for testing the AI Code Review Assistant API locally and on Render. The live Render deployment protects POST and DELETE endpoints with X-Demo-Token to prevent OpenAI API abuse.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -29,6 +29,11 @@
       "key": "language",
       "value": "Java",
       "type": "string"
+    },
+    {
+      "key": "demoToken",
+      "value": "PASTE_DEMO_TOKEN_HERE",
+      "type": "string"
     }
   ],
   "item": [
@@ -40,6 +45,10 @@
           {
             "key": "Content-Type",
             "value": "application/json"
+          },
+          {
+            "key": "X-Demo-Token",
+            "value": "{{demoToken}}"
           }
         ],
         "body": {
@@ -62,7 +71,7 @@
             "reviews"
           ]
         },
-        "description": "Creates a new AI-powered code review. Uses the OpenAI API through the deployed Spring Boot backend."
+        "description": "Creates a new AI-powered code review. On the live Render deployment, this endpoint requires the X-Demo-Token header because it calls the OpenAI API."
       }
     },
     {
@@ -81,7 +90,7 @@
             "reviews"
           ]
         },
-        "description": "Returns all stored code reviews from PostgreSQL."
+        "description": "Returns all stored code reviews from PostgreSQL. This endpoint does not require a demo token."
       }
     },
     {
@@ -101,7 +110,7 @@
             "{{reviewId}}"
           ]
         },
-        "description": "Returns a single code review by ID. Update the reviewId collection variable if needed."
+        "description": "Returns a single code review by ID. Update the reviewId collection variable if needed. This endpoint does not require a demo token."
       }
     },
     {
@@ -122,14 +131,19 @@
             "{{language}}"
           ]
         },
-        "description": "Returns reviews filtered by programming language. Update the language collection variable if needed."
+        "description": "Returns reviews filtered by programming language. Update the language collection variable if needed. This endpoint does not require a demo token."
       }
     },
     {
       "name": "Delete review by ID",
       "request": {
         "method": "DELETE",
-        "header": [],
+        "header": [
+          {
+            "key": "X-Demo-Token",
+            "value": "{{demoToken}}"
+          }
+        ],
         "url": {
           "raw": "{{baseUrl}}/api/v1/reviews/{{reviewId}}",
           "host": [
@@ -142,14 +156,19 @@
             "{{reviewId}}"
           ]
         },
-        "description": "Deletes a single review by ID. Update the reviewId collection variable before sending."
+        "description": "Deletes a single review by ID. On the live Render deployment, this endpoint requires the X-Demo-Token header. Update the reviewId collection variable before sending."
       }
     },
     {
       "name": "Delete all reviews",
       "request": {
         "method": "DELETE",
-        "header": [],
+        "header": [
+          {
+            "key": "X-Demo-Token",
+            "value": "{{demoToken}}"
+          }
+        ],
         "url": {
           "raw": "{{baseUrl}}/api/v1/reviews",
           "host": [
@@ -161,7 +180,7 @@
             "reviews"
           ]
         },
-        "description": "Deletes all stored reviews. Use carefully."
+        "description": "Deletes all stored reviews. On the live Render deployment, this endpoint requires the X-Demo-Token header. Use carefully."
       }
     }
   ]
